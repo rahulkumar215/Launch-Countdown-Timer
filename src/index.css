@@ -10,6 +10,7 @@
   --color-very-dark-mostly-black-blue: hsl(234, 17%, 12%);
 
   --font-size-normal: 62.5%;
+  --font-size-small: 50%;
   --font-family: "Red Hat Text", sans-serif;
   --font-weight: 700;
 }
@@ -28,6 +29,7 @@ html {
 }
 
 body {
+  font-family: var(--font-family);
   width: 100vw;
   height: 100vh;
 }
