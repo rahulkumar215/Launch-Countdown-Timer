@@ -1,13 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,700;1,700&display=swap");
 
 :root {
-  --color-grayish-blue: hsl(237, 18%, 59%);
-  --color-soft-red: hsl(345, 95%, 68%);
+  --color-grayish-blue: #8486a9;
+  --color-soft-red: #fb6087;
 
-  --color-white: hsl(0, 0%, 100%);
-  --color-dark-desaturated-blue: hsl(236, 21%, 26%);
-  --color-very-dark-blue: hsl(235, 16%, 14%);
-  --color-very-dark-mostly-black-blue: hsl(234, 17%, 12%);
+  --color-white: #ffffff;
+  --color-dark-desaturated-blue: #343650;
+  --color-very-dark-blue: #1e1f29;
+  --color-very-dark-mostly-black-blue: #191a24;
+
+  --color-bg-bottom: #261e2f;
 
   --font-size-normal: 62.5%;
   --font-size-small: 50%;
@@ -29,6 +31,26 @@ html {
 }
 
 body {
+  /* background: var(--color-grayish-blue); */
+  /* background: var(--color-dark-desaturated-blue); */
+  /* background: var(--color-very-dark-blue); */
+  /* background: var(--color-very-dark-mostly-black-blue); */
+
+  /* background: radial-gradient(
+    circle at 50% 100%,
+    var(--color-bg-bottom) 20%,
+    var(--color-very-dark-mostly-black-blue)
+  ); */
+  /* background: url("../public/pattern-hills.svg"); */
+  /* background: url("../public/bg-stars.svg"); */
+  /* background: url("../public/bg-stars.svg"); */
+
+  background: url("../public/bg-stars.svg"),
+    linear-gradient(
+      var(--color-very-dark-mostly-black-blue),
+      var(--color-bg-bottom) 80%
+    );
+
   font-family: var(--font-family);
   width: 100vw;
   height: 100vh;
