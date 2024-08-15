@@ -1,0 +1,30 @@
+.container__tools {
+  background: url("../../public/pattern-hills.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .icons {
+    width: 4.5rem;
+    height: 4.5rem;
+    fill: var(--color-icons);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+
+    &:hover {
+      fill: var(--color-soft-red);
+    }
+  }
+
+  .sp {
+    padding: 0.4rem;
+  }
+}

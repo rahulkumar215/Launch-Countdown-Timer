@@ -9,6 +9,8 @@
   --color-very-dark-blue: #1e1f29;
   --color-very-dark-mostly-black-blue: #191a24;
 
+  --color-icons: #8385a9;
+
   --color-bg-bottom: #261e2f;
 
   --font-size-normal: 62.5%;
@@ -31,30 +33,50 @@ html {
 }
 
 body {
-  /* background: var(--color-grayish-blue); */
-  /* background: var(--color-dark-desaturated-blue); */
-  /* background: var(--color-very-dark-blue); */
-  /* background: var(--color-very-dark-mostly-black-blue); */
-
-  /* background: radial-gradient(
-    circle at 50% 100%,
-    var(--color-bg-bottom) 20%,
-    var(--color-very-dark-mostly-black-blue)
-  ); */
-  /* background: url("../public/pattern-hills.svg"); */
-  /* background: url("../public/bg-stars.svg"); */
-  /* background: url("../public/bg-stars.svg"); */
-
   background: url("../public/bg-stars.svg"),
     linear-gradient(
       var(--color-very-dark-mostly-black-blue),
-      var(--color-bg-bottom) 80%
+      var(--color-bg-bottom) 60%
     );
 
   font-family: var(--font-family);
   width: 100vw;
   height: 100vh;
-
-  color: var(--color-white);
-  font-size: 6rem;
 }
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr 20rem;
+}
+
+@keyframes starsRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* background: var(--color-grayish-blue); */
+/* background: var(--color-dark-desaturated-blue); */
+/* background: var(--color-very-dark-blue); */
+/* background: var(--color-very-dark-mostly-black-blue); */
+
+/* background: radial-gradient(
+    circle at 50% 100%,
+    var(--color-bg-bottom) 20%,
+    var(--color-very-dark-mostly-black-blue)
+  ); */
+/* background: url("../public/pattern-hills.svg"); */
+/* background: url("../public/bg-stars.svg"); */
+/* background: url("../public/bg-stars.svg"); */
