@@ -1,7 +1,7 @@
 import React from "react";
 import "./Timer.scss";
 
-function Timer({ children }) {
+function Timer({ value, children }) {
   return (
     <div className="time-section" id="seconds">
       <div className="time-group">
