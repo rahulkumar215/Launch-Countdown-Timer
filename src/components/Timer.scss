@@ -13,6 +13,10 @@
   box-shadow: 0px 10px 0px 2px rgba(25, 26, 36, 1);
 }
 
+.time-group {
+  display: flex;
+}
+
 .segment-display {
   position: relative;
   height: 100%;
@@ -20,11 +24,11 @@
 
 .segment-display__top,
 .segment-display__bottom {
-  overflow: hidden !important;
+  overflow: hidden;
   text-align: center;
   width: 100%;
   height: 50%;
-  position: relative !important;
+  position: relative;
 }
 
 .segment-display__top {
@@ -45,12 +49,22 @@
     width: 100%;
     height: 50%;
     background: rgba($color: #000, $alpha: 0.1);
+
+    .flipping & {
+      height: 100%;
+    }
+  }
+
+  .flipping & {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 
 .segment-display__bottom {
   line-height: 0;
   color: var(--color-soft-red);
+  background-color: var(--color-dark-desaturated-blue);
 
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;

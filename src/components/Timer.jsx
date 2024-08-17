@@ -1,50 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Timer.scss";
 
 function Timer({ value, id, children }) {
-  const [timeValue, setTimeValue] = useState(() => {
-    return value;
-  });
-  const [prevValue, setPrevValue] = useState(() => {
-    return timeValue;
-  });
-
-  console.log(timeValue, prevValue);
+  const [currentValue, setCurrentValue] = useState(value);
+  const [previousValue, setPreviousValue] = useState(value);
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const segmentOverlayRef = useRef(null);
 
-  if (timeValue !== value) {
-    setTimeValue(value);
-    setShouldAnimate(true);
-    document
-      .getElementById(id)
-      .querySelector(".segment-overlay")
-      .addEventListener("animationend", finishAnimation);
-  }
+  useEffect(() => {
+    if (currentValue !== value) {
+      setShouldAnimate(true);
+      setPreviousValue(currentValue); // Set previous value before updating current
+      setCurrentValue(value); // Update current value
 
-  function finishAnimation() {
-    console.log("removed animation");
-    setShouldAnimate(false);
-    setPrevValue(timeValue);
-    this.removeEventListener("animationend", finishAnimation);
-  }
+      const overlayElement = segmentOverlayRef.current;
+      if (overlayElement) {
+        const finishAnimation = () => {
+          setShouldAnimate(false);
+          overlayElement.removeEventListener("animationend", finishAnimation);
+        };
+        overlayElement.addEventListener("animationend", finishAnimation);
+      }
+    }
+  }, [value, currentValue]);
 
-  const printTimeValue = timeValue > 9 ? timeValue : `0${timeValue}`;
-  const printPrevValue = prevValue > 9 ? prevValue : `0${prevValue}`;
+  const formattedCurrentValue =
+    currentValue > 9 ? currentValue : `0${currentValue}`;
+  const formattedPreviousValue =
+    previousValue > 9 ? previousValue : `0${previousValue}`;
 
   return (
     <div className="time-section" id={id}>
       <div className="time-group">
         <div className="time-segment">
-          <div className="segment-display">
-            <div className="segment-display__top">{printTimeValue}</div>
-            <div className="segment-display__bottom">{printPrevValue}</div>
+          <div
+            className={
+              shouldAnimate ? "segment-display flipping" : "segment-display"
+            }
+          >
+            <div className="segment-display__top">{formattedCurrentValue}</div>
+            <div className="segment-display__bottom">
+              {formattedPreviousValue}
+            </div>
             <div
               className={
                 shouldAnimate ? "segment-overlay flip" : "segment-overlay"
               }
+              ref={segmentOverlayRef}
             >
-              <div className="segment-overlay__top">{printPrevValue}</div>
-              <div className="segment-overlay__bottom">{printTimeValue}</div>
+              <div className="segment-overlay__top">
+                {formattedPreviousValue}
+              </div>
+              <div className="segment-overlay__bottom">
+                {formattedCurrentValue}
+              </div>
             </div>
           </div>
         </div>
