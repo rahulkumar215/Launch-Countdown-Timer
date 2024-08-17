@@ -20,11 +20,11 @@
 
 .segment-display__top,
 .segment-display__bottom {
-  overflow: hidden;
+  overflow: hidden !important;
   text-align: center;
   width: 100%;
   height: 50%;
-  position: relative;
+  position: relative !important;
 }
 
 .segment-display__top {
@@ -51,7 +51,6 @@
 .segment-display__bottom {
   line-height: 0;
   color: var(--color-soft-red);
-  background-color: black;
 
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
