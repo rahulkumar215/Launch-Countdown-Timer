@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Clock.scss";
 import Timer from "./Timer";
 
-function Clock() {
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 9);
-
+function Clock({ runClock, targetDate }) {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -41,26 +38,32 @@ function Clock() {
     };
   }
 
-  function updateAllSegments() {
-    const timeRemainingBits = getTimeRemaining(new Date(targetDate).getTime());
-
-    setDays(timeRemainingBits.days);
-    setHours(timeRemainingBits.hours);
-    setMinutes(timeRemainingBits.minutes);
-    setSeconds(timeRemainingBits.seconds);
-
-    return timeRemainingBits.complete;
-  }
-
   useEffect(() => {
-    const countdownTimer = setInterval(() => {
-      const isComplete = updateAllSegments();
+    function updateAllSegments() {
+      const timeRemainingBits = getTimeRemaining(
+        new Date(targetDate).getTime()
+      );
 
-      if (isComplete) {
-        clearInterval(countdownTimer);
-      }
-    }, 1000);
-  }, []);
+      setDays(timeRemainingBits.days);
+      setHours(timeRemainingBits.hours);
+      setMinutes(timeRemainingBits.minutes);
+      setSeconds(timeRemainingBits.seconds);
+
+      return timeRemainingBits.complete;
+    }
+
+    if (runClock) {
+      const countdownTimer = setInterval(() => {
+        const isComplete = updateAllSegments();
+
+        if (isComplete) {
+          clearInterval(countdownTimer);
+        }
+      }, 1000);
+
+      return () => clearInterval(countdownTimer);
+    }
+  }, [runClock]);
 
   return (
     <div className="container__clock">
