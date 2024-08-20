@@ -4,7 +4,7 @@ import Timer from "./Timer";
 
 function Clock() {
   const targetDate = new Date();
-  targetDate.setHours(targetDate.getHours() + 5);
+  targetDate.setDate(targetDate.getDate() + 9);
 
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -27,9 +27,10 @@ function Clock() {
     const secondsRemaining = Math.floor((targetDateTime - nowTime) / 1000);
 
     const days = Math.floor(secondsRemaining / 60 / 60 / 24);
-    const hours = Math.floor(secondsRemaining / 60 / 60);
-    const minutes = Math.floor(secondsRemaining / 60) - hours * 60;
-    const seconds = parseInt(secondsRemaining % 60, 10);
+    const hours = Math.floor(secondsRemaining / 60 / 60) - days * 24;
+    const minutes =
+      Math.floor(secondsRemaining / 60) - hours * 60 - days * 24 * 60;
+    const seconds = secondsRemaining % 60;
 
     return {
       complete,
@@ -40,19 +41,13 @@ function Clock() {
     };
   }
 
-  function updateValue(prevValue, setFunc, value) {
-    if (prevValue !== value) {
-      setFunc(value);
-    }
-  }
-
   function updateAllSegments() {
     const timeRemainingBits = getTimeRemaining(new Date(targetDate).getTime());
 
-    updateValue(days, setDays, timeRemainingBits.days);
-    updateValue(hours, setHours, timeRemainingBits.hours);
-    updateValue(minutes, setMinutes, timeRemainingBits.minutes);
-    updateValue(seconds, setSeconds, timeRemainingBits.seconds);
+    setDays(timeRemainingBits.days);
+    setHours(timeRemainingBits.hours);
+    setMinutes(timeRemainingBits.minutes);
+    setSeconds(timeRemainingBits.seconds);
 
     return timeRemainingBits.complete;
   }

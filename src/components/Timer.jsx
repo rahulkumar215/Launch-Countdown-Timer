@@ -4,22 +4,24 @@ import "./Timer.scss";
 function Timer({ value, id, children }) {
   const [currentValue, setCurrentValue] = useState(value);
   const [previousValue, setPreviousValue] = useState(value);
+  // const previousValue = currentValue;
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const segmentOverlayRef = useRef(null);
 
   useEffect(() => {
     if (currentValue !== value) {
-      setShouldAnimate(true);
-      setPreviousValue(currentValue); // Set previous value before updating current
-      setCurrentValue(value); // Update current value
+      setShouldAnimate((prev) => true);
+      setPreviousValue((prev) => currentValue); // Set previous value before updating current
+      setCurrentValue((prev) => value); // Update current value
 
       const overlayElement = segmentOverlayRef.current;
       if (overlayElement) {
         const finishAnimation = () => {
           setShouldAnimate(false);
-          overlayElement.removeEventListener("animationend", finishAnimation);
         };
-        overlayElement.addEventListener("animationend", finishAnimation);
+        setTimeout(() => {
+          finishAnimation();
+        }, 700);
       }
     }
   }, [value, currentValue]);
@@ -40,7 +42,7 @@ function Timer({ value, id, children }) {
           >
             <div className="segment-display__top">{formattedCurrentValue}</div>
             <div className="segment-display__bottom">
-              {formattedPreviousValue}
+              {shouldAnimate ? formattedPreviousValue : formattedCurrentValue}
             </div>
             <div
               className={
@@ -49,7 +51,7 @@ function Timer({ value, id, children }) {
               ref={segmentOverlayRef}
             >
               <div className="segment-overlay__top">
-                {formattedPreviousValue}
+                {shouldAnimate ? formattedPreviousValue : formattedCurrentValue}
               </div>
               <div className="segment-overlay__bottom">
                 {formattedCurrentValue}
