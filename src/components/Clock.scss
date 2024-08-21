@@ -1,4 +1,10 @@
 .container__clock {
+  grid-column: 1;
+
+  @media only screen and (max-width: 50em) {
+    align-self: end;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;

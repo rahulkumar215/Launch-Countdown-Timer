@@ -2,15 +2,33 @@
   margin: 2rem;
   text-align: center;
   font-size: 3rem;
+
+  @media only screen and (max-width: 50em) {
+    margin: 1rem;
+  }
+
+  @media only screen and (max-width: 25em) {
+    margin: 0.5rem;
+  }
 }
 
 .time-segment {
   display: block;
-  font-size: 100px;
+  font-size: 10rem;
   font-weight: 900;
-  width: 200px;
+  width: 20rem;
   border-radius: 1rem;
-  box-shadow: 0px 10px 0px 2px rgba(25, 26, 36, 1);
+  box-shadow: 0px 1rem 0px 0.2rem rgba(25, 26, 36, 1);
+
+  @media only screen and (max-width: 50em) {
+    font-size: 8rem;
+    width: 15rem;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 5rem;
+    width: 10rem;
+  }
 }
 
 .time-group {
@@ -75,8 +93,21 @@
   position: absolute;
   top: 0;
   height: 100%;
-  width: 200px;
-  perspective: 600px;
+  width: 20rem;
+  perspective: 60rem;
+
+  @media only screen and (max-width: 62.5em) {
+    perspective: 40rem;
+  }
+
+  @media only screen and (max-width: 50em) {
+    width: 15rem;
+    perspective: 40rem;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    width: 10rem;
+  }
 }
 
 .segment-overlay__top,
@@ -126,6 +157,16 @@
   font-size: 2rem;
   letter-spacing: 0.7rem;
   opacity: 0.5;
+
+  @media only screen and (max-width: 50em) {
+    font-size: 1.5rem;
+    letter-spacing: 0.4rem;
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+  }
 }
 
 @keyframes flip-top {

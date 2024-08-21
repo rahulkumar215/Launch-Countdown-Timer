@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: repeat(1fr);
 
-  align-items: start;
+  align-items: center;
   justify-content: center;
 
   text-align: center;
@@ -10,11 +10,28 @@
   width: 100%;
   height: 100%;
 
+  .grid-center {
+    justify-self: center;
+    border-radius: 50rem;
+    font-size: 1.8rem;
+    // margin: 5rem 0;
+  }
+
   h1 {
     align-self: center;
     font-size: 3rem;
     color: var(--color-white);
     letter-spacing: 1rem;
     font-family: inherit;
+
+    // margin: 10rem 0;
+
+    @media only screen and (max-width: 50em) {
+      align-self: end;
+    }
+
+    @media only screen and (max-width: 37.5em) {
+      font-size: 2.5rem;
+    }
   }
 }

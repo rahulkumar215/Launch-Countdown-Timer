@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,700;1,700&display=swap");
+/* autoprefixer grid: on */
+@import "./App.scss";
+@import "./components/Button.scss";
+@import "./components/Clock.scss";
+@import "./components/Controllers.scss";
+@import "./components/Timer.scss";
+@import "./components/TimerContainer.scss";
+@import "./components/ToolsAndLinkContainer.scss";
 
 :root {
   --color-grayish-blue: #8486a9;
@@ -17,7 +25,18 @@
   --font-size-small: 50%;
   --font-family: "Red Hat Text", sans-serif;
   --font-weight: 700;
+
+  --bp-largest: 62.5em; // 1000px
+  --bp-large: 50em; // 800px
+  --bp-medium: 37.5em; // 600px
+  --bp-small: 31.25em; // 500px
+  --bp-smaller: 25em; // 400px
 }
+
+// $bp-medium: 56.25em; // 900px
+// $bp-small: 37.5em; // 600px
+// $bp-smallest: 31.25em; // 500px
+// $bp-smallest: 31.25em; // 400px
 
 *,
 *::after,
@@ -30,6 +49,18 @@
 html {
   font-size: var(--font-size-normal);
   box-sizing: border-box;
+
+  @media only screen and (max-width: 62.5em) {
+    font-size: var(--font-size-small);
+  }
+
+  @media only screen and (max-width: 37.5em) {
+    font-size: var(--font-size-normal);
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    font-size: var(--font-size-small);
+  }
 }
 
 body {
@@ -40,6 +71,7 @@ body {
     );
 
   font-family: var(--font-family);
+
   width: 100vw;
   height: 100vh;
 }

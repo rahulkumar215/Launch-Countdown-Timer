@@ -1,18 +1,21 @@
 import React from "react";
 import "./Controllers.scss";
+import Button from "./Button";
 
-function Controllers({ startClock, stopClock, clearClock }) {
+function Controllers({ clockType, startClock, stopClock, clearClock }) {
   return (
     <div className="container__controllers">
-      <button className="btn" onClick={() => startClock()}>
+      <Button onClick={startClock} disabled={!(clockType === "timer")}>
         Start
-      </button>
-      <button className="btn" onClick={() => stopClock()}>
+      </Button>
+
+      <Button onClick={stopClock} disabled={!(clockType === "timer")}>
         Stop
-      </button>
-      <button className="btn" onClick={() => clearClock()}>
+      </Button>
+
+      <Button onClick={clearClock} disabled={!(clockType === "timer")}>
         Clear
-      </button>
+      </Button>
     </div>
   );
 }
